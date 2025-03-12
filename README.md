@@ -1,26 +1,26 @@
 # DSA210_project
 # Project Proposal: The Impact of Weather Conditions on Class Attendance for Off-Campus Students
 
-Introduction
+**Introduction**
 Class attendance is a critical factor in academic success. However, various external factors can influence a student’s decision to attend classes, particularly weather conditions. 
 
-Problem Statement
+**Problem Statement**
 This project aims to explore the relationship between weather conditions and my class attendance habits. Since I live off-campus and rely exclusively on the shuttle service to commute, my shuttle usage serves as a direct proxy for whether I attended class on a given day.
 
 By analyzing historical weather data and my shuttle usage records, I seek to understand:
 - How different weather conditions (e.g., rain, temperature, wind) impact class attendance.
 - Whether extreme weather (e.g., heavy rain, storms, extreme cold) significantly reduces attendance.
 
-Research Questions
+**Research Questions**
 This project will address the following key questions:
 1. How do weather variables (temperature, precipitation, humidity, wind) correlate with my class attendance?
 2. Can weather data be used to predict whether I will attend class?
 
 ---
 
-Data Collection
+**Data Collection**
 
-1. Attendance Data (Shuttle Usage)
+**1. Attendance Data (Shuttle Usage)**
 Since I only use the shuttle when attending classes, shuttle usage will serve as a proxy variable for my class attendance. I will collect the data from mySU.
 
 - Data Points Tracked:
@@ -29,7 +29,7 @@ Since I only use the shuttle when attending classes, shuttle usage will serve as
   - `departure_time` → The time I left for class.
   - `alternative_transportation` → If applicable, which alternative mode I used (walking, bus, etc.).
   
-2. Weather Data
+**2. Weather Data**
 Weather data will be collected via an API (e.g., OpenWeather) and merged with my shuttle usage dataset.
 
 - Weather Variables Collected:
@@ -40,7 +40,7 @@ Weather data will be collected via an API (e.g., OpenWeather) and merged with my
 
 ---
 
-Methodology & Analysis Plan
+**Methodology & Analysis Plan**
 
 - Visualizing the frequency of class attendance under different weather conditions.
 - Checking trends over time (seasonal effects, patterns).
@@ -48,27 +48,27 @@ Methodology & Analysis Plan
 
 ---
 
-Expected Outcomes
+**Expected Outcomes**
 Identification of weather conditions that negatively impact attendance.  
 Potential correlations between extreme weather and skipped classes.   
  
 
 ---
 
-Limitations & Future Work
- Limitations
+**Limitations & Future Work**
+ **Limitations**
 - Personal Dataset: Results are based on my attendance behavior and may not generalize to other students.
 - Unaccounted External Factors: Class schedule changes, exam periods, or personal reasons could influence attendance.
 - Short-Term Study: The dataset will only cover a limited timeframe.
 
- Future Work
+ **Future Work**
 - Expanding the study to multiple students to obtain generalized patterns.
 - Integrating real-time shuttle tracking data for improved accuracy.
 - Exploring university-wide attendance data to validate findings.
 
 ---
 
- Conclusion
+ **Conclusion**
 This project will analyze the impact of weather conditions on my class attendance, using shuttle usage as an indirect indicator. The findings could provide insights into student commuting behavior, potentially informing university policies on transportation and attendance strategies in response to extreme weather conditions.
 
 ---
