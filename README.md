@@ -1,88 +1,87 @@
-# DSA210_Project
+# DSA210 Spring 2025 Final Project
 
-## **Project Proposal: The Impact of Weather Conditions on Class Attendance for Off-Campus Students**
+**Project Title:** *How Does Weather Affect My Class Attendance?*
 
-###  Introduction
-Class attendance is a critical factor in academic success. However, various external factors can influence a student’s decision to attend classes, particularly **weather conditions**.
-
-###  Problem Statement
-This project aims to explore the relationship between **weather conditions** and **my class attendance habits**. Since I live off-campus and rely exclusively on the **shuttle service** to commute, my **shuttle usage serves as a direct proxy** for whether I attended class on a given day.
-
-By analyzing historical weather data, my shuttle usage records, and my **class schedule**, I seek to understand:
-- How **different weather conditions** (e.g., rain, temperature, wind) impact class attendance.
-- Whether **extreme weather** (e.g., heavy rain, storms, extreme cold) significantly reduces attendance.
-- If there are **certain classes** that I always attend regardless of the weather.
-- Whether **exam weeks affect my attendance decisions**, especially under poor weather conditions.
+**Author:** Zehra Tanhan  
+**Course:** DSA210 – Introduction to Data Science  
+**Term:** Spring 2024–2025
 
 ---
 
-##  Research Questions
-This project will address the following key questions:
-1. How do **weather variables** (temperature, precipitation, humidity, wind) correlate with my **class attendance**?
-2. Can **weather data be used to predict** whether I will attend class?
-3. Are there specific **classes that I prioritize**, attending them regardless of weather conditions?
-4. During **exam weeks**, does my attendance behavior change even under adverse weather conditions?
+## 🧠 Motivation
+As a university student living in Pendik, Istanbul, I noticed that my willingness to attend class seemed to vary with the weather. This project explores whether weather factors like precipitation and temperature have a measurable effect on my class attendance.
 
 ---
 
-##  Data Collection
-
-###  **1. Attendance Data (Shuttle Usage & Class Schedule)**
-Since I **only use the shuttle when attending classes**, shuttle usage will serve as a **proxy variable** for my class attendance. Additionally, I will track my **daily class schedule** to analyze whether certain courses impact my attendance behavior.
-
-**Data Points Tracked:**
-- `date` → The day of the recorded instance.
-- `shuttle_used (binary)` → 1 if I took the shuttle (attended class), 0 if I did not (skipped class).
-- `departure_time` → The time I left for class.
-- `alternative_transportation` → If applicable, which alternative mode I used (walking, bus, etc.).
-- `daily_class_schedule` → The list of courses I have on that specific day.
-- `exam_week (binary)` → 1 if the day falls within an exam period, 0 otherwise.
-
-### ☁️ü **2. Weather Data**
-Weather data will be collected via an API (e.g., OpenWeather) and merged with my attendance dataset.
-
-**Weather Variables Collected:**
-- `temperature_min (°C)` → Minimum temperature of the day.
-- `temperature_max (°C)` → Maximum temperature of the day.
-- `precipitation (mm)` → Amount of rainfall/snowfall.
-- `weather_condition` → Categorical (sunny, cloudy, stormy, etc.).
+## 📊 Data Source
+- **Attendance Data:** Manually recorded in a CSV file including the date and whether I attended class (1 = yes, 0 = no).
+- **Weather Data:** Retrieved using [Visual Crossing Weather API](https://www.visualcrossing.com/).
+  - Location: Pendik, Istanbul (40.8902, 29.3773)
+  - Time Period: February 10 – April 23, 2025
+  - Variables: Daily maximum/minimum temperature, precipitation (mm), weather conditions
 
 ---
 
-##  Methodology & Analysis Plan
+## 🔍 Exploratory Data Analysis (EDA)
+### Summary:
+- 50+ days of data were collected.
+- Attendance rate was plotted against maximum temperature and precipitation.
 
-- **Visualizing the frequency of class attendance** under different weather conditions.
-- Checking **trends over time** (seasonal effects, patterns).
-- Using the **information learned in DSA210** to analyze the data properly.
-- Identifying **priority classes** that I attend regardless of weather.
-- Marking **exam weeks** to determine if attendance changes under poor weather conditions.
-
----
-
-##  Expected Outcomes
-- **Identification of weather conditions** that negatively impact attendance.
-- **Potential correlations between extreme weather and skipped classes**.
-- **Insights into class prioritization**: Are there classes that I never miss?
-- **Exam week trends**: Does bad weather affect my attendance during exams?
+### Key Visual Insights:
+- Attendance tended to be **lower on colder and wetter days**.
+- Scatter plots showed negative trends between attendance and both precipitation and cold temperatures.
+- Categorized weather conditions (e.g., Rain, Snow, Clear) revealed that clearer days had higher attendance rates.
 
 ---
 
-##  Limitations & Future Work
+## 🧪 Hypothesis Testing
+### Hypothesis:
+- **H0 (Null):** Weather conditions do not affect my attendance.
+- **H1 (Alternative):** Attendance is lower on cold (max temp < 8°C) and rainy (precipitation > 0.5 mm) days.
 
-###  **Limitations**
-- **Personal Dataset**: Results are based on my attendance behavior and may not generalize to other students.
-- **Unaccounted External Factors**: Class schedule changes, exam periods, or personal reasons could influence attendance.
-- **Short-Term Study**: The dataset will only cover a limited timeframe.
+### Test Used:
+- Independent samples **t-test** between:
+  - Group A: Cold & rainy days
+  - Group B: Other days
 
-###  **Future Work**
-- Expanding the study to **multiple students** to obtain generalized patterns.
-- Integrating **real-time shuttle tracking data** for improved accuracy.
-- Exploring **university-wide attendance data** to validate findings.
+### Result:
+- t = -0.372, p = 0.772
+- Group A size: 2 days, Group B size: 48 days
 
+### Conclusion:
+- The test **did not find a statistically significant difference** in attendance between the two groups (p > 0.05).
+- However, this is likely due to the **very small number of cold and rainy days** in the dataset. With more data, a significant effect might emerge.
 
 ---
 
-## 🎯 Conclusion
-This project will analyze the **impact of weather conditions on my class attendance**, using **shuttle usage as an indirect indicator** and incorporating **class schedule & exam weeks** for deeper insights. The findings could provide insights into **student commuting behavior, class prioritization, and exam attendance trends in adverse weather conditions**.
+## 📈 Limitations and Future Work
+- **Sample Size:** More data, especially more cold and rainy days, would improve statistical power.
+- **External Factors:** Illness, exam schedules, and transportation issues were not accounted for.
+- **Improvements:** Automating attendance tracking and expanding to other students would improve generalizability.
 
+---
 
+## 📂 Project Structure
+```
+├── data/
+│   ├── attendance.csv
+│   └── weather.csv
+├── analysis.ipynb
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🔧 Technologies Used
+- **Python** (pandas, matplotlib, seaborn, scipy)
+- **Visual Crossing API** for weather data
+- **Jupyter Notebook** for analysis
+- **GitHub** for version control
+
+---
+
+## 🧾 Citation and Academic Integrity
+This project was completed individually. All AI assistance was documented. Data was collected and analyzed ethically. No part of the code or results was copied.
+
+> "This project is a personal exploration of how weather may influence daily student behavior using data science."
