@@ -1,87 +1,111 @@
-# DSA210 Spring 2025 Final Project
+# DSA210_Project
 
-**Project Title:** *How Does Weather Affect My Class Attendance?*
+## Project Proposal: The Impact of Weather Conditions on My Class Attendance
 
-**Author:** Zehra Tanhan  
-**Course:** DSA210 – Introduction to Data Science  
-**Term:** Spring 2024–2025
+### Introduction
 
----
-
-## 🧠 Motivation
-As a university student living in Pendik, Istanbul, I noticed that my willingness to attend class seemed to vary with the weather. This project explores whether weather factors like precipitation and temperature have a measurable effect on my class attendance.
+This project explores whether daily weather conditions influence my university class attendance. As a student living in Pendik, Istanbul, I rely on the campus shuttle for commuting. Therefore, shuttle usage is used as a proxy for attendance. The central question is whether factors such as temperature and precipitation affect my motivation or ability to attend class.
 
 ---
 
-## 📊 Data Source
-- **Attendance Data:** Manually recorded in a CSV file including the date and whether I attended class (1 = yes, 0 = no).
-- **Weather Data:** Retrieved using [Visual Crossing Weather API](https://www.visualcrossing.com/).
-  - Location: Pendik, Istanbul (40.8902, 29.3773)
-  - Time Period: February 10 – April 23, 2025
-  - Variables: Daily maximum/minimum temperature, precipitation (mm), weather conditions
+## Problem Statement
+
+This study investigates the relationship between daily weather variables and my recorded class attendance. The aim is to determine:
+
+- Whether cold or rainy days correlate with lower attendance,
+- If class attendance shows weekly or seasonal patterns,
+- Whether weather significantly affects attendance during exam weeks,
+- If the influence of weather differs across weekdays.
 
 ---
 
-## 🔍 Exploratory Data Analysis (EDA)
-### Summary:
-- 50+ days of data were collected.
-- Attendance rate was plotted against maximum temperature and precipitation.
+## Research Questions
 
-### Key Visual Insights:
-- Attendance tended to be **lower on colder and wetter days**.
-- Scatter plots showed negative trends between attendance and both precipitation and cold temperatures.
-- Categorized weather conditions (e.g., Rain, Snow, Clear) revealed that clearer days had higher attendance rates.
+1. Is there a measurable relationship between weather conditions and attendance?
+2. Are cold and rainy days associated with decreased attendance?
+3. How do attendance patterns vary across weekdays and exam weeks?
+4. Can we statistically confirm that bad weather impacts my likelihood of attending class?
 
 ---
 
-## 🧪 Hypothesis Testing
-### Hypothesis:
-- **H0 (Null):** Weather conditions do not affect my attendance.
-- **H1 (Alternative):** Attendance is lower on cold (max temp < 8°C) and rainy (precipitation > 0.5 mm) days.
+## Dataset Overview
 
-### Test Used:
-- Independent samples **t-test** between:
-  - Group A: Cold & rainy days
-  - Group B: Other days
+### Attendance Data
 
-### Result:
-- t = -0.372, p = 0.772
-- Group A size: 2 days, Group B size: 48 days
+Manually collected over a period from February 10 to May 23, 2025. Dates corresponding to weekends, public holidays, and the earthquake-related university closure (April 24–25) were excluded.
 
-### Conclusion:
-- The test **did not find a statistically significant difference** in attendance between the two groups (p > 0.05).
-- However, this is likely due to the **very small number of cold and rainy days** in the dataset. With more data, a significant effect might emerge.
+Columns:
+- `date`: calendar day
+- `attendance`: binary (1 = attended, 0 = not attended)
 
----
+### Weather Data
 
-## 📈 Limitations and Future Work
-- **Sample Size:** More data, especially more cold and rainy days, would improve statistical power.
-- **External Factors:** Illness, exam schedules, and transportation issues were not accounted for.
-- **Improvements:** Automating attendance tracking and expanding to other students would improve generalizability.
+Collected via the Visual Crossing Weather API for Pendik, Istanbul (Latitude: 40.8902, Longitude: 29.3773).
+
+Columns:
+- `tempmax_c`: maximum temperature (°C)
+- `tempmin_c`: minimum temperature (°C)
+- `precip`: daily precipitation (mm)
+- `conditions`: weather type (e.g., Rain, Snow, Clear)
 
 ---
 
-## 📂 Project Structure
-```
-├── data/
-│   ├── attendance.csv
-│   └── weather.csv
-├── analysis.ipynb
-├── requirements.txt
-└── README.md
-```
+## Methodology and Analysis Plan
+
+1. **Data Preprocessing**
+   - Merge attendance and weather data on the `date` column.
+   - Filter out non-class days and handle missing values.
+
+2. **Exploratory Data Analysis (EDA)**
+   - Plot attendance against temperature and precipitation.
+   - Create bar plots and box plots by weather type and weekday.
+   - Investigate time trends and variability.
+
+3. **Statistical Testing**
+   - Conduct an independent samples t-test:
+     - Group A: Cold (<10°C) and rainy (>0.2 mm) days
+     - Group B: Other days
+   - Test if Group A has significantly lower attendance.
+
+4. **Regression Modeling**
+   - Apply multiple linear regression to determine the predictive power of:
+     - Maximum temperature
+     - Precipitation
 
 ---
 
-## 🔧 Technologies Used
-- **Python** (pandas, matplotlib, seaborn, scipy)
-- **Visual Crossing API** for weather data
-- **Jupyter Notebook** for analysis
-- **GitHub** for version control
+## Tools and Technologies
+
+- Python (pandas, seaborn, matplotlib, scipy, statsmodels)
+- Jupyter Notebook (Google Colab)
+- Visual Crossing Weather API
 
 ---
 
-## 🧾 Citation and Academic Integrity
-This project was completed individually. All AI assistance was documented. Data was collected and analyzed ethically. No part of the code or results was copied.
+## Expected Outcomes
 
-> "This project is a personal exploration of how weather may influence daily student behavior using data science."
+- Identification of environmental conditions associated with poor attendance
+- Statistical evidence on the relationship between weather and behavioral patterns
+- Insights into the resilience of attendance during exam periods or across weekdays
+
+---
+
+## Limitations and Future Work
+
+### Limitations
+
+- Dataset reflects personal behavior and may not generalize
+- Limited sample size, especially for rare conditions like snow
+- External factors like health, workload, or motivation were not recorded
+
+### Future Work
+
+- Expand analysis to include more students and a longer time period
+- Incorporate shuttle delay data or academic performance metrics
+- Build a prediction model for daily attendance based on weather forecasts
+
+---
+
+## Conclusion
+
+This project combines behavioral data with environmental data to analyze how weather affects class attendance. By using data science techniques learned in DSA210, this study demonstrates how real-world conditions can be measured, visualized, and tested using statistical tools. The results may provide insights not only into personal habits but also into broader academic planning and infrastructure decisions.
